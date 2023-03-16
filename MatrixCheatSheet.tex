@@ -1,0 +1,102 @@
+\documentclass[onecolumn]{IEEEtran}
+\IEEEoverridecommandlockouts
+% The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
+\usepackage[noadjust]{cite}
+\renewcommand\citepunct{, }
+%\usepackage[caption=false]{subfig}
+\usepackage{subcaption}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage[ruled,vlined,linesnumbered]{algorithm2e}
+\usepackage{bm}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{textcomp}
+\usepackage{color,soul}
+\usepackage{multirow}
+\usepackage{comment}
+\usepackage{tcolorbox}
+\usepackage{balance}
+\usepackage{tabularx}
+\usepackage[yyyymmdd,hhmmss]{datetime}
+\usepackage{array}
+\usepackage{textcase}
+\usepackage[tablename=TABLE]{caption}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+		T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+%\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{listings}
+\lstset{
+	%backgroundcolor=\color{backcolour},   
+	commentstyle=\color{codegreen},
+	keywordstyle=\color{blue},
+	numberstyle=\tiny\color{codegray},
+	stringstyle=\color{codepurple},
+	basicstyle=\footnotesize,
+	escapeinside=``,
+	breaklines,
+	columns=fullflexible,
+	identifierstyle={},
+	stringstyle=\ttfamily,
+	extendedchars=false,
+	linewidth=1\textwidth,
+	numbers=left,
+	numbersep=2 em, 
+	tabsize=4,
+	frame=leftline,
+	showstringspaces=false
+}
+
+\newcommand{\lrangle}[1]{\langle#1\rangle}
+\newcommand{\lrvert}[1]{\left\vert#1\right\vert}
+\newcommand{\lrVert}[1]{\left\Vert#1\right\Vert}
+\usepackage{tikz}
+\usepackage{tikz-qtree}
+\usepackage{style/algorithm2estyle}
+\usetikzlibrary{trees}
+\IEEEoverridecommandlockouts
+
+\SetKwInput{KwData}{Input}
+\SetKwInput{KwResult}{Output}
+\SetKwInOut{Init}{Init}
+\newtheorem{theorem}{Theorem}
+\begin{document}
+	\title{Matrix and vector derivative cheat sheet}
+	\author{
+		\IEEEauthorblockN{Peiyuan Zhai}
+		%\IEEEauthorblockA{5276179}
+	}
+	\maketitle
+ \begin{enumerate}
+ 	\item \[\nabla_{\mathbf{x}}\mathbf{Ax}=\left[\begin{matrix}
+ 		\nabla_{\mathbf{x}}\tilde{\mathbf{a}}_1\mathbf{x}\\\nabla_{\mathbf{x}}\tilde{\mathbf{a}}_2\mathbf{x}\\\vdots\\\nabla_{\mathbf{x}}\tilde{\mathbf{a}}_m\mathbf{x}
+ 	\end{matrix}\right]=[\tilde{\mathbf{a}}_1^T,\tilde{\mathbf{a}}_2^T,\cdots,\tilde{\mathbf{a}}_m^T]=\mathbf{A}^T\]
+ \item $\mathbf{x}^T\mathbf{Ax}=\sum\limits_{i=1}^nx_i\tilde{\mathbf{a}}_i\mathbf{x}$\\
+ $\Rightarrow$ $\frac{\partial \mathbf{x}^T\mathbf{Ax}}{\mathbf{x}_l}=\sum_{i=1}^n\mathbf{x}_i\tilde{a}_{i,l}+\tilde{\mathbf{a}}_l\mathbf{x}=\mathbf{a}_l^T\mathbf{x}+\tilde{\mathbf{a}_l}\mathbf{x}$\\
+ $\Rightarrow$ $\frac{\partial\mathbf{x}^T\mathbf{Ax}}{\partial \mathbf{x}}=\mathbf{A}^T\mathbf{x}+\mathbf{Ax}$
+ \item (Derivative in a trace) $\mathbf{A}\in\mathbb{R}^{n\times n}$
+ \[\boxed{\frac{tr(\mathbf{A}d\mathbf{X})}{d\mathbf{X}}=\mathbf{A}^T}\]
+ \item $\mathbf{A}\in\mathbb{R}^{n\times m}$ and $\mathbf{B}\in\mathbb{R}^{m\times n}$
+ \[tr(\mathbf{AB})=\sum\limits_{i=1}^ma_{1i}b_{i1}+\cdots+\sum\limits_{i=1}^ma_{ni}b_{in}\]\\
+ $\Rightarrow$
+ \[\boxed{\nabla_{\mathbf{A}}tr(\mathbf{AB})=\mathbf{B}^T}\]
+ \item \begin{equation}
+ 	\begin{split}
+ 		\frac{\nabla f(\mathbf{Ax})}{\nabla x_i}&=\sum\limits_{k=1}^n\frac{\nabla f(\mathbf{Ax})}{\nabla(\mathbf{Ax})_k}\cdot\frac{\nabla(\mathbf{Ax})_k}{\nabla x_i}=\sum\limits_{k=1}^n\frac{\nabla f(\mathbf{Ax})}{\nabla(\mathbf{Ax})_k}\cdot\frac{\nabla(\tilde{\mathbf{a}}_k^T\mathbf{x})}{\nabla x_i}\\
+ 		&=\sum\limits_{k=1}^n\frac{\nabla f(\mathbf{Ax})}{\nabla(\mathbf{Ax})_k}\cdot a_{ki}=\sum\limits_{k=1}^n\nabla_{x_k}f(\mathbf{Ax})a_{ki}\\
+ 		&=\mathbf{a}_i^T\nabla f(\mathbf{Ax})
+ 	\end{split}
+ \end{equation}
+$\Rightarrow$  \fbox{$\nabla_{\mathbf{x}}f(\mathbf{Ax})=\mathbf{A}^T\nabla f(\mathbf{Ax})$}\\
+Similarly, one can derive that 
+\[\frac{\nabla^2f(\mathbf{Ax})}{\nabla x_i\nabla x_j} = \mathbf{a}_i^T\nabla^2f(\mathbf{Ax})\mathbf{a}_j \]
+$\Rightarrow$  \fbox{$\nabla^2_{\mathbf{x}}f(\mathbf{Ax})=\mathbf{A}^T\nabla^2f(\mathbf{Ax})\mathbf{A}$}
+\item \[\nabla_{\mathbf{A}}tr(\mathbf{AB}\mathbf{A}^T\mathbf{C})=\mathbf{CAB}+\mathbf{C}^T\mathbf{AB}^T\]
+ \end{enumerate}
+	\clearpage
+	% \bibliographystyle{ieeetr}
+	% \bibliography{main}
+\end{document}
+
+

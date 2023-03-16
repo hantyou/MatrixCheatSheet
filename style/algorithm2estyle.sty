@@ -1,0 +1,22 @@
+\usepackage[ruled,vlined,linesnumbered]{algorithm2e}
+\SetKwInput{KwData}{Input}
+\SetKwInput{KwResult}{Output}
+\SetKwInOut{Init}{Initialize}
+\newlength\mylena
+\newcommand\myinput[1]{%
+	\settowidth\mylena{\KwData{}}%
+	\setlength\hangindent{\mylena}%
+	\hspace*{\mylena}#1\\}
+\newlength\mylenb
+\newcommand\myoutput[1]{%
+	\settowidth\mylenb{\KwResult{}}%
+	\setlength\hangindent{\mylenb}%
+	\hspace*{\mylenb}#1\\}
+\newlength\mylenc
+\newcommand\myinit[1]{%
+	\settowidth\mylenc{\Init{}}%
+	\setlength\hangindent{\mylenc}%
+	\hspace*{\mylenc}#1\\}
+
+\SetKwComment{Comment}{/*}{*/}
+\SetNlSty{textbf}{}{:}
