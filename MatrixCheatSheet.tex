@@ -93,6 +93,11 @@ Similarly, one can derive that
 \[\frac{\nabla^2f(\mathbf{Ax})}{\nabla x_i\nabla x_j} = \mathbf{a}_i^T\nabla^2f(\mathbf{Ax})\mathbf{a}_j \]
 $\Rightarrow$  \fbox{$\nabla^2_{\mathbf{x}}f(\mathbf{Ax})=\mathbf{A}^T\nabla^2f(\mathbf{Ax})\mathbf{A}$}
 \item \[\nabla_{\mathbf{A}}tr(\mathbf{AB}\mathbf{A}^T\mathbf{C})=\mathbf{CAB}+\mathbf{C}^T\mathbf{AB}^T\]
+\item Matrix Inversion Lemma (MIL, Woodbury matrix identity)
+\[(A + UCV^T)^{-1} = A^{-1} - A^{-1}U(C^{-1} + V^TA^{-1}U)^{-1}V^TA^{-1}\]
+\begin{enumerate}
+	\item Variant 1: $[\frac{1}{\sigma^2}\mathbf{A}^T\mathbf{A}+\boldsymbol{\Sigma}_{\boldsymbol{\alpha}}]^{-1} = \boldsymbol{\Sigma}_{\boldsymbol{\alpha}}^{-1}-\boldsymbol{\Sigma}_\alpha^{-1} \mathbf{A}^T\left(\frac{1}{\sigma^2} \mathbf{I}+\mathbf{A} \boldsymbol{\Sigma}_\alpha^{-1} \mathbf{A}^T\right)^{-1} \mathbf{A} \boldsymbol{\Sigma}_{\boldsymbol{\alpha}}^{-1}$
+\end{enumerate}
  \end{enumerate}
 	\clearpage
 	% \bibliographystyle{ieeetr}
