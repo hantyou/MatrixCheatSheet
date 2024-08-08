@@ -27,3 +27,5 @@ demopic-eps-converted-to.pdf
 *.nmc
 *.ffs_db
 *.pdf
+*.fdb_latexmk
+*.fls
